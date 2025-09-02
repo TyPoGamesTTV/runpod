@@ -207,6 +207,56 @@ RESOLUTION = 768        # High detail capture
 ❌ Don't use FFmpeg (might crash pod)
 ❌ Don't push batch size to 101%
 
+## Frame Extraction Methods
+
+### Standard Extraction (Uniform Sampling)
+```bash
+# Basic extraction - samples frames evenly
+python3 extract_frames.py            # 768x768 grayscale
+python3 extract_frames_rgb.py        # 768x768 RGB
+python3 extract_frames_512_rgb.py    # 512x512 RGB
+```
+
+### Intelligent Extraction (Diverse Frame Selection)
+```bash
+# Intelligent extraction - selects most diverse frames
+# Analyzes video content and picks frames with maximum visual difference
+
+# 512x512 RGB with intelligent selection (FASTEST)
+python3 extract_frames_intelligent.py full_dataset frames_512_rgb_smart \
+    --resolution 512 --color rgb --num-frames 16
+
+# 768x768 RGB with intelligent selection (BEST QUALITY)
+python3 extract_frames_intelligent.py full_dataset frames_768_rgb_smart \
+    --resolution 768 --color rgb --num-frames 16
+
+# 768x768 Grayscale with intelligent selection
+python3 extract_frames_intelligent.py full_dataset frames_768_gray_smart \
+    --resolution 768 --color grayscale --num-frames 16
+
+# Custom settings
+python3 extract_frames_intelligent.py input_dir output_dir \
+    --resolution 512 \           # Frame size (512 or 768)
+    --num-frames 16 \            # Number of diverse frames
+    --color rgb \                # rgb or grayscale
+    --sample-rate 2              # Analyze every Nth frame
+```
+
+### Why Intelligent Extraction?
+- **Captures key moments**: Finds frames that are most different from each other
+- **Better training data**: Maximum visual diversity in minimum frames
+- **Improved accuracy**: Model sees more variety, learns better
+- **Reduces redundancy**: Avoids selecting similar/duplicate frames
+
+### Extraction Time Comparison
+| Method | Resolution | Color | Time (1500 videos) |
+|--------|------------|-------|-------------------|
+| Standard | 768x768 | Grayscale | ~60 minutes |
+| Standard | 768x768 | RGB | ~90 minutes |
+| Standard | 512x512 | RGB | ~45 minutes |
+| Intelligent | 768x768 | RGB | ~120 minutes |
+| Intelligent | 512x512 | RGB | ~60 minutes |
+
 ## Monitoring Commands
 ```bash
 # GPU usage

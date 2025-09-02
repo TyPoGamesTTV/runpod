@@ -107,6 +107,9 @@ python3 quick_test.py
 # Set Google Drive file ID
 export GOOGLE_DRIVE_ID='your_file_id_here'
 
+# Test download setup (optional but recommended)
+bash test_download.sh
+
 # Start training in tmux (survives disconnection)
 tmux new -s training
 bash run_training.sh

@@ -142,8 +142,39 @@ scp -P [PORT] root@[IP]:/workspace/training_results.zip ./
 scp -P 22150 root@69.30.85.213:/workspace/training_results.zip ./
 ```
 
-### 4.3 Stop RunPod
-**IMPORTANT**: Stop the pod in RunPod dashboard to avoid continued charges!
+### 4.3 Stop vs Terminate RunPod
+
+**Two Options:**
+
+#### Option A: Stop (Recommended for experiments)
+- Click **Stop** in RunPod dashboard
+- Keeps all your data intact
+- Costs ~$0.10/day for storage
+- Can **Resume** anytime with same data
+- Perfect for running multiple experiments over days/weeks
+
+#### Option B: Terminate (When completely done)
+- Click **Terminate** in RunPod dashboard  
+- Deletes everything
+- No ongoing charges
+- Cannot resume - start fresh next time
+
+**Smart Strategy for Experiments:**
+1. First session: Download data, extract frames, train baseline
+2. **Stop** pod (keep data)
+3. Few days later: **Resume** pod
+4. Try different model (data already there!)
+5. Repeat as needed
+6. **Terminate** only when completely done
+
+**To Resume a Stopped Pod:**
+- Go to RunPod dashboard
+- Find your stopped pod
+- Click Resume
+- SSH in with same credentials
+- All your files are still there!
+
+**IMPORTANT**: For minimum rentals (like 10 hours), you're charged whether running or stopped. Use all the time!
 
 ## What We Learned
 

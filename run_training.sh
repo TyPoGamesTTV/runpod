@@ -18,7 +18,7 @@ if [ -z "$GOOGLE_DRIVE_ID" ]; then
     exit 1
 fi
 
-gdown "https://drive.google.com/uc?id=${GOOGLE_DRIVE_ID}" -O sample_dataset.zip
+gdown --fuzzy "https://drive.google.com/uc?id=${GOOGLE_DRIVE_ID}" -O sample_dataset.zip
 
 # Extract dataset
 echo "[2/4] Extracting dataset..."

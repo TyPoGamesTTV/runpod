@@ -156,6 +156,7 @@ scp -P 22150 root@69.30.85.213:/workspace/training_results.zip ./
 - ❌ tmux/screen (not installed by default)
 - ❌ 32GB full dataset (too big to transfer quickly)
 - ❌ WeTransfer for wget (gives HTML page)
+- ❌ gdown without --fuzzy flag (fails on large files)
 
 ### Time Breakdown (Actual)
 - Local prep: 30 mins

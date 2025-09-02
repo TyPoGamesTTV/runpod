@@ -161,8 +161,10 @@ pip install opencv-python
 
 ### Google Drive download fails
 ```bash
-# Alternative method if gdown fails
-pip install gdown
+# ALWAYS use --fuzzy flag for large files!
+gdown --fuzzy "https://drive.google.com/uc?id=YOUR_ID"
+
+# Or if you have the full URL
 gdown --fuzzy "https://drive.google.com/file/d/YOUR_ID/view"
 ```
 

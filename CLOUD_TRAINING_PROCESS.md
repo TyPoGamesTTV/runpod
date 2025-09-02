@@ -78,17 +78,22 @@ python3 quick_test.py
 
 ## Phase 3: Training Pipeline (2-3 hours)
 
-### 3.1 Start Training
+### 3.1 Download Dataset FIRST (Separate Step!)
 ```bash
 # Set Google Drive file ID
 export GOOGLE_DRIVE_ID='your_file_id_here'
 
-# Test download first
-bash test_download.sh
+# Download and verify dataset
+bash download_dataset.sh
 
-# Run full pipeline
+# ONLY after successful download, run training
 bash run_training.sh
 ```
+
+**IMPORTANT**: Always download dataset as a separate step! This way:
+- You can verify the download worked (check file size)
+- You can re-run training without re-downloading
+- You don't lose the download if training fails
 
 **What happens:**
 1. Downloads dataset from Google Drive (~10 mins for 11GB)

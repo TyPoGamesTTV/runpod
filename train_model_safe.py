@@ -125,12 +125,12 @@ class VideoViT(nn.Module):
         B, T, C, H, W = x.shape  # (batch, frames, 1, 768, 768)
         
         # Embed patches for each frame
-        x = x.view(B * T, C, H, W)
+        x = x.reshape(B * T, C, H, W)
         x = self.patch_embed(x)  # (B*T, dim, H/32, W/32)
         x = x.flatten(2).transpose(1, 2)  # (B*T, num_patches, dim)
         
         # Reshape to (B, T*num_patches, dim)
-        x = x.view(B, T * self.num_patches, self.dim)
+        x = x.reshape(B, T * self.num_patches, self.dim)
         
         # Add positional embeddings
         x = x + self.pos_embed

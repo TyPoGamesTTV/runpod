@@ -38,7 +38,7 @@ class MediaClassifierGUI:
         # Statistics
         self.total_videos = 0
         self.processed_videos = 0
-        self.classifications = {'Safe': 0, 'Unsafe': 0, 'Explicit': 0, 'Uncertain': 0}
+        self.classifications = {'1_Safe': 0, '2_Unsafe': 0, '3_Explicit': 0, 'Uncertain': 0}
         
         self.create_widgets()
         self.update_log()
@@ -201,9 +201,9 @@ class MediaClassifierGUI:
         total = sum(self.classifications.values())
         if total > 0:
             stats_text = f"Processed: {total}/{self.total_videos}\n"
-            stats_text += f"Safe: {self.classifications['Safe']}\n"
-            stats_text += f"Unsafe: {self.classifications['Unsafe']}\n"
-            stats_text += f"Explicit: {self.classifications['Explicit']}\n"
+            stats_text += f"Safe: {self.classifications['1_Safe']}\n"
+            stats_text += f"Unsafe: {self.classifications['2_Unsafe']}\n"
+            stats_text += f"Explicit: {self.classifications['3_Explicit']}\n"
             if self.classifications['Uncertain'] > 0:
                 stats_text += f"Uncertain: {self.classifications['Uncertain']}"
             self.stats_label.config(text=stats_text)
@@ -236,7 +236,7 @@ class MediaClassifierGUI:
             return
         
         # Reset statistics
-        self.classifications = {'Safe': 0, 'Unsafe': 0, 'Explicit': 0, 'Uncertain': 0}
+        self.classifications = {'1_Safe': 0, '2_Unsafe': 0, '3_Explicit': 0, 'Uncertain': 0}
         self.processed_videos = 0
         
         # Update UI
@@ -260,7 +260,7 @@ class MediaClassifierGUI:
         try:
             # Load model
             self.log("INFO", "Loading model...")
-            classifier = VideoClassifier(self.model_path.get())
+            classifier = VideoClassifier(self.model_path.get(), device=None)
             self.log("SUCCESS", "Model loaded successfully")
             
             # Get video files
@@ -281,9 +281,9 @@ class MediaClassifierGUI:
             # Create output folders
             output_base = Path(self.output_folder.get())
             output_folders = {
-                'Safe': output_base / '1_Safe',
-                'Unsafe': output_base / '2_Unsafe',
-                'Explicit': output_base / '3_Explicit'
+                '1_Safe': output_base / '1_Safe',
+                '2_Unsafe': output_base / '2_Unsafe',
+                '3_Explicit': output_base / '3_Explicit'
             }
             
             if self.create_uncertain.get():

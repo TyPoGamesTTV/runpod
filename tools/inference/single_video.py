@@ -87,7 +87,7 @@ class VideoClassifier:
         """
         self.resolution = resolution
         self.num_frames = num_frames
-        self.class_names = ['Safe', 'Unsafe', 'Explicit']
+        self.class_names = ['1_Safe', '2_Unsafe', '3_Explicit']
         
         # Set device
         if device is None:
